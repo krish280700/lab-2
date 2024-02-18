@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=lab-2:* nodemon ./bin/www"
+    "dev": "DEBUG=lab-2:* nodemon ./bin/www",
+    "tailwind:css": "postcss public/stylesheets/tailwind.css -o public/styles/style.css"
   },
   "dependencies": {
     "cookie-parser": "~1.4.6",
@@ -13,6 +14,7 @@
     "http-errors": "~2.0.0",
     "morgan": "~1.10.0",
     "nodemon": "^3.0.3",
+    "postcss-cli": "^11.0.0",
     "pug": "3.0.2"
   }
 }

@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title} by krishna
+  nav(class="navbar navbar-light bg-light")
+    div(class="container-fluid")
+      a(class="navbar-brand" href="#") Contacts
+      p.me-2 Krishna Sridhar #{name}
+
+  include home.pug
+  include contacts.pug
+  
+
