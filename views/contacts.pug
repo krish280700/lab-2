@@ -9,17 +9,16 @@ div.container
                 th Last Name
                 th Email address
                 th Notes
-                th Datetime created or last edited
                 th actions
         tbody
             each item in contacts
                 tr
                     td= item.id
-                    td= item.fName
+                    td
+                        a(href="/view") #{item.fName}
                     td= item.lName
                     td= item.email
                     td= item.notes
-                    td= item.modified
                     td 
                         button.btn.btn-secondary Edit
                         button.btn.btn-danger.ms-1 Delete

@@ -1,0 +1,12 @@
+div.container
+    h1 Create New Contact
+    form(action="")
+        label(for="fName") First Name 
+        input.form-control(type="text" name='fName' value=item.fName ? item.fName : '' ) 
+        label(for="lName") Last Name 
+        input.form-control(type="text" name='lName' value=item.lName ? item.lName : '') 
+        label(for="email") Email 
+        input.form-control(type="text" name='email' value=item.email ? item.email : '') 
+        label(for="notes") Notes 
+        textarea.form-control(name="notes", cols="30", rows="10" value=item.notes ) 
+        button.btn.btn-success.my-2 Save
