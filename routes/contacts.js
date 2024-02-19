@@ -8,17 +8,14 @@ const sanitizeHtml = require('sanitize-html');
 function validateContactData(data) {
   const { fName, lName, email } = data;
 
-  // Check for non-empty, non-numeric first name and last name
   const isNonEmptyString = value => typeof value === 'string' && value.trim() !== '';
   const containsOnlyLetters = value => /^[A-Za-z]+$/.test(value);
 
   const isNonNumericFirstName = isNonEmptyString(fName) && containsOnlyLetters(fName);
   const isNonNumericLastName = isNonEmptyString(lName) && containsOnlyLetters(lName);
 
-  // Check for valid email address using a simple regex pattern
   const isInvalidEmail = email && !/^\S+@\S+\.\S+$/.test(email);
 
-  // Return true if all validations pass
   return isNonNumericFirstName && isNonNumericLastName && !isInvalidEmail;
 }
 
@@ -53,6 +50,7 @@ router.get('/view', (req, res) => {
   res.render('contacts/view');
 });
 
+// Edit Module
 router.get('/:id/edit', (req, res) => {
   try {
     const { id } = req.params;
@@ -80,20 +78,16 @@ router.post('/', (req, res) => {
       return res.render('contacts/add', { errorMessage: 'Please fill in all required fields.', contacts, layout: 'layout' });
     }
 
-    // Sanitize user input
     const sanitizedData = sanitizeContactData(req.body);
 
     const newContact = new Contact(sanitizedData.fName, sanitizedData.lName, sanitizedData.email, sanitizedData.notes);
 
-    // Attempt to create the contact
     const createdContact = contactsJSON.createContact(newContact);
     if (!createdContact) {
-      // Handle the case where the contact creation fails
       return res.status(500).send('Failed to create contact');
     }
     res.redirect('/contacts/list');
   } catch (error) {
-    // Handle unexpected errors
     console.error('Error creating contact:', error);
     res.status(500).send('Internal Server Error');
   }
@@ -179,7 +173,6 @@ router.post('/:id', (req, res) => {
 
     res.redirect(`/contacts/${id}`);
   } catch (error) {
-    // Handle unexpected errors
     console.error('Error updating contact:', error);
     res.status(500).send('Internal Server Error');
   }
