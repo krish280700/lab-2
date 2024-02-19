@@ -14,15 +14,18 @@ block content
                     th Notes
                     th actions
             tbody
-                each item in contacts
-                    tr
-                        td= item.id
-                        td
-                            a(href=`/contacts/${contact.id}`) #{item.fName}
-                        td= item.lName
-                        td= item.email
-                        td= item.notes
-                        td 
-                            button.btn.btn-secondary Edit
-                            button.btn.btn-danger.ms-1 Delete
+                if contacts && contacts.length
+                    each item in contacts
+                        tr
+                            td= item.id
+                            td
+                                a(href=`/contacts/${contact.id}`) #{item.fName}
+                            td= item.lName
+                            td= item.email
+                            td= item.notes
+                            td 
+                                button.btn.btn-secondary Edit
+                                button.btn.btn-danger.ms-1 Delete
+                else
+                    p No records found
                     
