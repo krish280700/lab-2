@@ -7,6 +7,7 @@ block content
         table.table
             thead
                 tr
+                    th S.No
                     th Contact ID
                     th First Name
                     th Last Name
@@ -15,8 +16,9 @@ block content
                     th actions
             tbody
                 if contacts && contacts.length
-                    each item in contacts
+                    each item, index in contacts
                         tr
+                            td= index + 1
                             td= item.id
                             td
                                 a(href=`/contacts/${item.id}`) #{item.fName}

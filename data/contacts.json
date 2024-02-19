@@ -1,23 +1,5 @@
 [
   {
-    "id": "2",
-    "fName": "Jane",
-    "lName": "Doe",
-    "email": "jane.doe@example.com",
-    "notes": "Another sample contact",
-    "createdAt": "2024-02-18T08:47:49.487Z",
-    "updatedAt": "2024-02-18T19:35:06.467Z"
-  },
-  {
-    "id": "id-1708051767029",
-    "fName": "Kane",
-    "lName": "Dann",
-    "email": "kanedanny@gmail.com",
-    "notes": "",
-    "createdAt": "2024-02-16T04:18:14.876Z",
-    "updatedAt": "2024-02-16T04:18:14.877Z"
-  },
-  {
     "id": "id-1708320569418",
     "fName": "Krish",
     "lName": "ms",
@@ -27,12 +9,39 @@
     "updatedAt": "2024-02-19T05:29:29.418Z"
   },
   {
-    "id": "generated-id-1708369569414",
+    "id": "id-1708369569414",
     "fName": "Theepan",
     "lName": "Gandhi",
     "email": "theepgan@mail.com",
     "notes": "Hey Buddy, Whats up!",
     "createdAt": "2024-02-19T19:06:09.414Z",
     "updatedAt": "2024-02-19T19:06:09.414Z"
+  },
+  {
+    "id": "id-1708378540745",
+    "fName": "Krishna",
+    "lName": "Sridhar",
+    "email": "ks@gmail.com",
+    "notes": "This is my details",
+    "createdAt": "2024-02-19T21:35:40.746Z",
+    "updatedAt": "2024-02-19T21:35:40.746Z"
+  },
+  {
+    "id": "id-1708378615096",
+    "fName": "Avinash",
+    "lName": "Avi",
+    "email": "avi@mail.com",
+    "notes": "This is my friend",
+    "createdAt": "2024-02-19T21:36:55.096Z",
+    "updatedAt": "2024-02-19T21:36:55.096Z"
+  },
+  {
+    "id": "id-1708378667645",
+    "fName": "Pavi",
+    "lName": "Pavi",
+    "email": "pavui@gmail.com",
+    "notes": "Hey all.!",
+    "createdAt": "2024-02-19T21:37:47.645Z",
+    "updatedAt": "2024-02-19T21:37:47.645Z"
   }
 ]

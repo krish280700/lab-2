@@ -14,11 +14,13 @@ block content
             p 
                 storng Notes: #{contact.notes}
             p 
-                storng Created: #{contact.modified}
+                storng Created at: #{contact.createdAt}
+            p 
+                storng Modified at: #{contact.updatedAt}
 
         div.d-flex.align-items-end
             a.btn.btn-primary(href='/contacts/list') Back
-            a.btn.btn-secondary(href=`/contacts/${item.id}/edit`) Edit
+            a.btn.btn-secondary.ms-1(href=`/contacts/${contact.id}/edit`) Edit
             form(style='display:inline-block', method='post', action=`/contacts/${contact.id}/delete`)
                 button.btn.btn-danger.ms-1(type="submit") Delete
 

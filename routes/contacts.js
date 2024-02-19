@@ -74,11 +74,8 @@ router.get('/:id/edit', (req, res) => {
 // Route to handle creating a new contact
 router.post('/', (req, res) => {
   try {
-    // const { fName, lName, email, notes } = req.body;
     // Validate the form data
     if (!validateContactData(req.body)) {
-      // Display error message and render the form again
-      // console.log(lName, 'im in')
       const contacts = contactsJSON.getAllContacts();
       return res.render('contacts/add', { errorMessage: 'Please fill in all required fields.', contacts, layout: 'layout' });
     }
@@ -90,7 +87,6 @@ router.post('/', (req, res) => {
 
     // Attempt to create the contact
     const createdContact = contactsJSON.createContact(newContact);
-    console.log(createdContact)
     if (!createdContact) {
       // Handle the case where the contact creation fails
       return res.status(500).send('Failed to create contact');
@@ -118,7 +114,6 @@ router.get('/:id', (req, res) => {
       createdAt: new Date(contact.createdAt).toLocaleString(),
       updatedAt: new Date(contact.updatedAt).toLocaleString(),
     };
-    console.log(formattedContact)
     res.render('contacts/view', { contact: formattedContact, layout: 'layout' });
     } catch (error) {
       console.error('Error retrieving contact:', error);
@@ -135,7 +130,6 @@ router.post('/:id/delete', (req, res) => {
     const success = contactsJSON.deleteContact(id);
 
     if (!success) {
-      console.log('Im in')
       // Handle the case where the contact deletion fails
       res.status(500).send('Failed to delete contact');
       return;
@@ -147,29 +141,6 @@ router.post('/:id/delete', (req, res) => {
   }
 });
 
-// Route to handle viewing a dynamically generated contact
-router.get('/generated/:id', (req, res) => {
-  try {
-    // Get the dynamically generated ID from the URL
-    const dynamicId = req.params.id;
-
-    // Logic to fetch the dynamically generated contact
-    const generatedContact = contactsJSON.getContactById(dynamicId);
-
-    if (!generatedContact) {
-      // Handle the case where the contact is not found
-      res.status(404).send('Generated Contact not found');
-      return;
-    }
-
-    res.render('contacts/show', { contact: generatedContact, layout: 'layout' });
-  } catch (error) {
-    console.error('Error retrieving generated contact:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-
 // updating an existing contact
 router.post('/:id', (req, res) => {
   try {
@@ -179,7 +150,7 @@ router.post('/:id', (req, res) => {
     // Validation
     if (!validateContactData(req.body)) {
       const contact = contactsJSON.getContactById(id);
-      return res.render('contacts/edit', { errorMessage: 'Please fill in all required fields.', contact, layout: 'layout' });
+      return res.render('contacts/add', { errorMessage: 'Please fill in all required fields.', contact, layout: 'layout' });
     }
 
     const sanitizedData = sanitizeContactData(req.body);

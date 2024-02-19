@@ -2,8 +2,8 @@ extends ../layout
 
 block content
     div.container
-        h1 Create New Contact
-        form(action="/contacts" method="post")
+        h1 Update Contact
+        form(action=`${layout == 'edit' ? `/contacts/${contact.id}` : '/contacts'}` method="post")
             label(for="fName") First Name 
             input.form-control(type="text" name='fName' value= (layout == 'edit') ? contact.fName : '' ) 
             label(for="lName") Last Name 
@@ -12,5 +12,8 @@ block content
             input.form-control(type="text" name='email' value=(layout == 'edit') ? contact.email : '') 
             label(for="notes") Notes 
             textarea.form-control(name="notes", cols="30", rows="10") #{(layout == 'edit') ? contact.notes : ''} 
-            button.btn.btn-success(type='submit') Save
-        a.btn.btn-secondary.my-2.ms-2(href='/contacts/list') back
+            if layout == 'edit'
+                button.btn.btn-success(type='submit') Update
+            else
+                button.btn.btn-success(type='submit') Save
+            a.btn.btn-secondary.my-2.ms-2(href='/contacts/list') back

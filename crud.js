@@ -60,7 +60,7 @@ function deleteContact(id) {
 }
 
 function generateId() {
-  return `generated-id-${Date.now()}`;
+  return `id-${Date.now()}`;
 }
 
 module.exports = {
