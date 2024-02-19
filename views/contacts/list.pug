@@ -19,13 +19,16 @@ block content
                         tr
                             td= item.id
                             td
-                                a(href=`/contacts/${contact.id}`) #{item.fName}
+                                a(href=`/contacts/${item.id}`) #{item.fName}
                             td= item.lName
                             td= item.email
                             td= item.notes
                             td 
-                                button.btn.btn-secondary Edit
-                                button.btn.btn-danger.ms-1 Delete
+                                a.btn.btn-secondary(href=`/contacts/${item.id}/edit`) Edit
+                                // Add the delete form
+                                form(style='display:inline-block', method='post', action=`/contacts/${item.id}/delete`)
+                                    button.btn.btn-danger.ms-1(type="submit") Delete
                 else
-                    p No records found
+                    tr
+                        td No records found
                     

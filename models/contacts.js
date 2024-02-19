@@ -11,7 +11,7 @@ class Contact {
   }
   
   function generateUniqueId() {
-    return 'id#' + Date.now();
+    return 'id-' + Date.now();
   }
   
   module.exports = Contact;

@@ -9,16 +9,7 @@
     "updatedAt": "2024-02-18T19:35:06.467Z"
   },
   {
-    "id": "id#1708051549870",
-    "fName": "Samhitha",
-    "lName": "Sampath",
-    "email": "samhithavinni@gmail.com",
-    "notes": "",
-    "createdAt": "2024-02-16T02:47:07.373Z",
-    "updatedAt": "2024-02-16T02:47:07.373Z"
-  },
-  {
-    "id": "id#1708051767029",
+    "id": "id-1708051767029",
     "fName": "Kane",
     "lName": "Dann",
     "email": "kanedanny@gmail.com",
@@ -27,39 +18,21 @@
     "updatedAt": "2024-02-16T04:18:14.877Z"
   },
   {
-    "id": "id#1708249148380",
-    "fName": "Vinni",
-    "lName": "Moee",
-    "email": "vinnimoee@gmail.com",
-    "notes": "",
-    "createdAt": "2024-02-18T10:34:02.980Z",
-    "updatedAt": "2024-02-18T19:33:49.685Z"
-  },
-  {
-    "id": "id#1708252629379",
-    "fName": "Hina",
-    "lName": "James",
-    "email": "",
-    "notes": "",
-    "createdAt": "2024-02-18T19:32:15.355Z",
-    "updatedAt": "2024-02-18T19:53:56.082Z"
-  },
-  {
-    "id": "id#1708320492858",
-    "firstName": "Krish",
-    "lastName": "kp",
-    "emailAddress": "krishkrishnan2001@gmail.com",
-    "notes": "ds",
-    "createdAt": "2024-02-19T05:28:12.858Z",
-    "updatedAt": "2024-02-19T05:28:12.858Z"
-  },
-  {
-    "id": "id#1708320569418",
+    "id": "id-1708320569418",
     "fName": "Krish",
     "lName": "ms",
     "email": "krishkrishnan2001@gmail.com",
     "notes": "saxd",
     "createdAt": "2024-02-19T05:29:29.418Z",
     "updatedAt": "2024-02-19T05:29:29.418Z"
+  },
+  {
+    "id": "generated-id-1708369569414",
+    "fName": "Theepan",
+    "lName": "Gandhi",
+    "email": "theepgan@mail.com",
+    "notes": "Hey Buddy, Whats up!",
+    "createdAt": "2024-02-19T19:06:09.414Z",
+    "updatedAt": "2024-02-19T19:06:09.414Z"
   }
 ]

@@ -20,6 +20,7 @@ function getAllContacts() {
 }
 
 function getContactById(dynamicId) {
+  console.log(dynamicId, 'jnsj')
   const contacts = readData();
   return contacts.find(contact => contact.id === dynamicId);
 }
