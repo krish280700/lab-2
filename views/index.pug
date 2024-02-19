@@ -1,14 +1,10 @@
 extends layout
 
 block content
-  nav(class="navbar navbar-light bg-light")
-    div(class="container-fluid")
-      a(class="navbar-brand" href="#") Contacts
-      p.me-2 Krishna Sridhar #{name}
-
-  //- include home.pug
-  //- include contacts.pug
-  //- include view.pug
-  include add.pug
+  div.container
+    h1= title
+    p Welcome to Full-Stack Development lab 2 by krishna
+    a(class="btn btn-primary" href="/contacts/list") View Contacts
+  block content
   
 
