@@ -1,9 +1,9 @@
 class Contact {
-    constructor(firstName, lastName, emailAddress, notes) {
+    constructor(fName, lName, email, notes) {
       this.id = generateUniqueId();
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.emailAddress = emailAddress || '';
+      this.fName = fName;
+      this.lName = lName;
+      this.email = email || '';
       this.notes = notes || '';
       this.createdAt = new Date();
       this.updatedAt = new Date();
@@ -11,7 +11,7 @@ class Contact {
   }
   
   function generateUniqueId() {
-    return 'generated-id-' + Date.now();
+    return 'id#' + Date.now();
   }
   
   module.exports = Contact;

@@ -6,17 +6,17 @@ const sanitizeHtml = require('sanitize-html');
 
 
 function validateContactData(data) {
-  const { firstName, lastName, emailAddress } = data;
+  const { fName, lName, email } = data;
 
   // Check for non-empty, non-numeric first name and last name
   const isNonEmptyString = value => typeof value === 'string' && value.trim() !== '';
   const containsOnlyLetters = value => /^[A-Za-z]+$/.test(value);
 
-  const isNonNumericFirstName = isNonEmptyString(firstName) && containsOnlyLetters(firstName);
-  const isNonNumericLastName = isNonEmptyString(lastName) && containsOnlyLetters(lastName);
+  const isNonNumericFirstName = isNonEmptyString(fName) && containsOnlyLetters(fName);
+  const isNonNumericLastName = isNonEmptyString(lName) && containsOnlyLetters(lName);
 
   // Check for valid email address using a simple regex pattern
-  const isInvalidEmail = emailAddress && !/^\S+@\S+\.\S+$/.test(emailAddress);
+  const isInvalidEmail = email && !/^\S+@\S+\.\S+$/.test(email);
 
   // Return true if all validations pass
   return isNonNumericFirstName && isNonNumericLastName && !isInvalidEmail;
@@ -27,7 +27,7 @@ function sanitizeContactData(data) {
   return {
     fName: sanitizeHtml(data.fName.trim(), { allowedTags: [], allowedAttributes: {} }),
     lName: sanitizeHtml(data.lName.trim(), { allowedTags: [], allowedAttributes: {} }),
-    emailAddress: sanitizeHtml(data.emailAddress.trim(), { allowedTags: [], allowedAttributes: {} }),
+    email: sanitizeHtml(data.email.trim(), { allowedTags: [], allowedAttributes: {} }),
     notes: sanitizeHtml(data.notes.trim(), { allowedTags: ['b', 'i', 'em', 'strong', 'a'], allowedAttributes: { 'a': ['href'] } }),
   };
 }
@@ -55,13 +55,13 @@ router.get('/view', (req, res) => {
 // Route to handle creating a new contact
 router.post('/', (req, res) => {
   try {
-    const { fName, lName, email, notes } = req.body;
-    console.log(fName)
+    // const { fName, lName, email, notes } = req.body;
     // Validate the form data
     if (!validateContactData(req.body)) {
       // Display error message and render the form again
-      const contacts = contactsRepository.getAllContacts();
-      return res.render('contacts/new', { errorMessage: 'Please fill in all required fields.', contacts, layout: 'layout' });
+      // console.log(lName, 'im in')
+      const contacts = contactsJSON.getAllContacts();
+      return res.render('contacts/add', { errorMessage: 'Please fill in all required fields.', contacts, layout: 'layout' });
     }
 
     // Sanitize user input
@@ -70,14 +70,13 @@ router.post('/', (req, res) => {
     const newContact = new Contact(sanitizedData.fName, sanitizedData.lName, sanitizedData.email, sanitizedData.notes);
 
     // Attempt to create the contact
-    const createdContact = contactsRepository.createContact(newContact);
-
+    const createdContact = contactsJSON.createContact(newContact);
+    console.log(createdContact)
     if (!createdContact) {
       // Handle the case where the contact creation fails
       return res.status(500).send('Failed to create contact');
     }
-
-    res.redirect('/contacts');
+    res.redirect('/contacts/list');
   } catch (error) {
     // Handle unexpected errors
     console.error('Error creating contact:', error);
@@ -88,7 +87,7 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res) => {
   try {
     const { id } = req.params;
-    const contact = contactsRepository.getContactById(id);
+    const contact = contactsJSON.getContactById(id);
 
     if (!contact) {
       // Handle the case where the contact is not found
@@ -108,6 +107,27 @@ router.get('/:id', (req, res) => {
     }
 });
 
+// Route to handle deleting a contact
+router.post('/:id/delete', (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Attempt to delete the contact
+    const success = contactsJSON.deleteContact(id);
+
+    if (!success) {
+      // Handle the case where the contact deletion fails
+      res.status(500).send('Failed to delete contact');
+      return;
+    }
+
+    res.redirect('/contacts');
+  } catch (error) {
+    console.error('Error deleting contact:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 // Route to handle viewing a dynamically generated contact
 router.get('/generated/:id', (req, res) => {
   try {
@@ -115,7 +135,7 @@ router.get('/generated/:id', (req, res) => {
     const dynamicId = req.params.id;
 
     // Logic to fetch the dynamically generated contact
-    const generatedContact = contactsRepository.getContactById(dynamicId);
+    const generatedContact = contactsJSON.getContactById(dynamicId);
 
     if (!generatedContact) {
       // Handle the case where the contact is not found

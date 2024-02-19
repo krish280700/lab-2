@@ -3,7 +3,7 @@ extends ../layout
 block content
     div.container
         h1 Create New Contact
-        form(action="/" method="post")
+        form(action="/contacts" method="post")
             label(for="fName") First Name 
             input.form-control(type="text" name='fName' value=item.fName ? item.fName : '' ) 
             label(for="lName") Last Name 
